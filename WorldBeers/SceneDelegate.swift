@@ -35,7 +35,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func showHomeViewController(with beers: [Beer]) {
-        let vc = HomeViewController()
+        let vc = HomeViewController(viewModel: HomeViewModel(beers: beers))
 
         self.navController?.pushViewController(vc, animated: false)
     }

@@ -9,5 +9,8 @@ import Foundation
 import Combine
 
 final class HomeViewModel {
-
+    
+    init(beers: [Beer]) {
+        print(beers.map(\.name))
+    }
 }

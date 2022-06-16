@@ -15,3 +15,13 @@ struct Beer: Codable {
     let abv: Double
     let ibu: Double?
 }
+
+extension Beer {
+    private enum CodingKeys : String, CodingKey {
+        case name,
+             imageUrl = "image_url",
+             description,
+             abv,
+             ibu
+    }
+}

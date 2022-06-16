@@ -6,10 +6,37 @@
 //
 
 import Foundation
+import Combine
 
-struct NetworkWorker {
-    enum Endpoint: String {
-        case base = "https://api.punkapi.com/v2/"
+protocol NetworkWorkable {
+    func make(_ request: Request) -> AnyPublisher<Data, NetworkError>
+}
+
+struct NetworkWorker: NetworkWorkable {
+    func make(_ request: Request) -> AnyPublisher<Data, NetworkError> {
+        if let request = request.urlRequest() {
+            return URLSession.shared.dataTaskPublisher(for: request)
+                .map(\.data)
+                .mapError { urlError in
+                    return NetworkError.generic(urlError)
+                }
+                .eraseToAnyPublisher()
+        } else {
+            return Fail(error: NetworkError.invalidUrl).eraseToAnyPublisher()
+        }
     }
+}
 
+enum NetworkError: LocalizedError {
+    case invalidUrl
+    case generic(URLError)
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidUrl:
+            return "Error"
+        case .generic( let error):
+            return error.localizedDescription
+        }
+    }
 }

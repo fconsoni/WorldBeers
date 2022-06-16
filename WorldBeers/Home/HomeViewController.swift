@@ -21,7 +21,7 @@ final class HomeViewController: UIViewController {
 
     private let viewModel: HomeViewModel
 
-    init(viewModel: HomeViewModel = HomeViewModel()) {
+    init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)

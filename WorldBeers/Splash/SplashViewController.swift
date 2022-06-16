@@ -46,10 +46,10 @@ final class SplashViewController: UIViewController {
         self.view.addSubview(iconView)
 
         NSLayoutConstraint.activate([
-            iconView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            iconView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            iconView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65),
-            iconView.heightAnchor.constraint(equalTo: iconView.heightAnchor)
+            iconView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            iconView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            iconView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.65),
+            iconView.heightAnchor.constraint(equalTo: iconView.widthAnchor)
         ])
 
         self.viewModel.iconImage
