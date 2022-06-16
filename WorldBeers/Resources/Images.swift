@@ -10,4 +10,5 @@ import UIKit
 
 struct Images {
     static let splashIcon = #imageLiteral(resourceName: "beer_icon")
+    static let picturePlaceholder = #imageLiteral(resourceName: "placeholder_icon")
 }

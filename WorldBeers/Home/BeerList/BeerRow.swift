@@ -13,6 +13,7 @@ final class BeerRow: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.kf.indicatorType = .activity
         return imageView
     }()
 
@@ -55,6 +56,12 @@ final class BeerRow: UICollectionViewCell {
     func show(_ beer: Beer) {
         self.beer = beer
 
-        self.imageView.kf.setImage(with: URL(string: beer.imageUrl))
+        self.imageView.kf.setImage(with: URL(string: beer.imageUrl),
+                                   placeholder: Images.picturePlaceholder,
+                                   options: [.cacheOriginalImage])
+        self.nameLabel.text = beer.name
+        self.descriptionLabel.text = beer.description
+        self.abvLabel.text = "\(beer.abv)%"
+        self.ibuLabel.text = beer.ibu != nil ? "\(beer.ibu?.description ?? "")%" : "N/A"
     }
 }
