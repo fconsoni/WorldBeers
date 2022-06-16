@@ -8,8 +8,9 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
-    private let searchTextBar: UITextField = {
-        let view = UITextField()
+    private let searchBarView: SearchBarView = {
+        let view = SearchBarView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -35,9 +36,18 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationController?.isNavigationBarHidden = true
+        self.view.backgroundColor = .white
+
+        setupView()
     }
 
     private func setupView() {
+        [searchBarView, listView].forEach(self.view.addSubview)
 
+        NSLayoutConstraint.activate([
+            searchBarView.topAnchor.constraint(equalTo: view.topAnchor),
+            searchBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchBarView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
     }
 }

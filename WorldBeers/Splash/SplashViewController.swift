@@ -35,6 +35,7 @@ final class SplashViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationController?.isNavigationBarHidden = true
+        self.view.backgroundColor = .white
 
         setupView()
 
