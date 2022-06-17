@@ -20,7 +20,7 @@ final class SplashViewModel {
     }
 
     func loadBeers() {
-        self.networkWorker.make(Request(.get, endpoint: .beers(page: 1)))
+        self.networkWorker.make(Request(.get, endpoint: .beers(page: 1, perPage: 40)))
             .receive(on: RunLoop.main)
             .decode(type: [Beer].self, decoder: JSONDecoder())
             .sink(receiveCompletion: { result in

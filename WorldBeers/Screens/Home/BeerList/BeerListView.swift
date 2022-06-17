@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 16
@@ -26,6 +26,8 @@ final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDe
     }()
 
     private(set) var selectedBeer = PassthroughSubject<Beer, Never>()
+    private(set) var scrollThresholdPassed = PassthroughSubject<Void, Never>()
+    private var isUpdating = false
     private var beers: [Beer] = []
 
     init() {
@@ -54,6 +56,7 @@ final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     func show(_ beers: [Beer]) {
         self.beers = beers
+        self.isUpdating = false
 
         UIView.performWithoutAnimation {
             self.collectionView.reloadData()
@@ -85,5 +88,18 @@ final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDe
         let fixedWidth = collectionView.frame.width - 32
 
         return CGSize(width: fixedWidth, height: 110)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentScrollOffset = scrollView.contentOffset.y + collectionView.frame.height
+        let threshold = collectionView.contentSize.height * 0.8
+
+        print(currentScrollOffset)
+        print(threshold)
+
+        if (threshold > 0) && (currentScrollOffset >= threshold) && !self.isUpdating {
+            isUpdating = true
+            scrollThresholdPassed.send(())
+        }
     }
 }

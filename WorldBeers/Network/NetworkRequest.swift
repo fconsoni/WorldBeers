@@ -13,15 +13,16 @@ struct Request {
     }
 
     enum Endpoint {
-        case beers(page: Int)
+        case beers(page: Int, perPage: Int)
 
         func url(fromBase baseUrl: String) -> URL? {
             var urlComponents: URLComponents?
 
             switch self {
-            case let .beers(pageCount):
+            case let .beers(pageCount, perPage):
                 urlComponents = URLComponents(string: baseUrl + "beers")
                 urlComponents?.queryItems?.append(URLQueryItem(name: "page", value: pageCount.description))
+                urlComponents?.queryItems?.append(URLQueryItem(name: "per_page", value: perPage.description))
             }
 
             return urlComponents?.url

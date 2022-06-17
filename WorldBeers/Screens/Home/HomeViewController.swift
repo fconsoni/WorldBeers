@@ -81,5 +81,9 @@ final class HomeViewController: UIViewController {
         listView.selectedBeer.sink { [weak self] beer in
             self?.viewModel.pick(beer)
         }.store(in: &cancellables)
+
+        listView.scrollThresholdPassed.sink { [weak self] in
+            self?.viewModel.loadMoreBeers()
+        }.store(in: &cancellables)
     }
 }
