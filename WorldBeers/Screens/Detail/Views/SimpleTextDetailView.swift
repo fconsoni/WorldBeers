@@ -60,10 +60,10 @@ final class SimpleTextDetailView: UIView {
     func show(_ field: Field, of details: BeerDetails) {
         switch field {
         case .firstBrewed:
-            self.titleLabel.text = "First brewed".uppercased()
+            self.titleLabel.text = NSLocalizedString("details.firstBrewed", comment: "").uppercased()
             self.descriptionLabel.text = details.firstBrewed
         case .brewerTips:
-            self.titleLabel.text = "Brewer tips".uppercased()
+            self.titleLabel.text = NSLocalizedString("details.brewerTips", comment: "").uppercased()
             self.descriptionLabel.text = details.brewerTips
         }
     }

@@ -13,7 +13,7 @@ final class FoodPairingView: UIView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .black)
         titleLabel.textColor = .black
-        titleLabel.text = "Food pairing".uppercased()
+        titleLabel.text = NSLocalizedString("details.foodPairing", comment: "").uppercased()
         titleLabel.textAlignment = .center
         return titleLabel
     }()

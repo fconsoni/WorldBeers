@@ -17,7 +17,7 @@ final class SearchBarView: UIView {
         textfield.textColor = .black
         textfield.borderStyle = .roundedRect
         textfield.backgroundColor = .white
-        textfield.attributedPlaceholder = NSAttributedString(string: "Search for name or description", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
+        textfield.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("search.placeholder", comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         return textfield
     }()
 

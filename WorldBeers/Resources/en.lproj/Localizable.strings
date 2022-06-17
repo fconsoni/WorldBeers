@@ -6,4 +6,7 @@
   
 */
 
-
+"search.placeholder" = "Search for name or description";
+"details.firstBrewed" = "First brewed";
+"details.brewerTips" = "Brewer tips";
+"details.foodPairing" = "Food pairing";
