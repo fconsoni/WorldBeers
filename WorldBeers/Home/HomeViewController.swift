@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeViewController: UIViewController {
     private let searchBarView: SearchBarView = {
@@ -20,6 +21,7 @@ final class HomeViewController: UIViewController {
         return view
     }()
 
+    private var cancellables = Set<AnyCancellable>()
     private let viewModel: HomeViewModel
 
     init(viewModel: HomeViewModel) {
@@ -41,13 +43,38 @@ final class HomeViewController: UIViewController {
         setupView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setupActions()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        listView.setTopInset(searchBarView.frame.height)
+    }
+
     private func setupView() {
-        [searchBarView, listView].forEach(self.view.addSubview)
+        [listView, searchBarView].forEach(self.view.addSubview)
 
         NSLayoutConstraint.activate([
             searchBarView.topAnchor.constraint(equalTo: view.topAnchor),
             searchBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchBarView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            searchBarView.widthAnchor.constraint(equalTo: view.widthAnchor),
+
+            listView.topAnchor.constraint(equalTo: view.topAnchor),
+            listView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            listView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            listView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+
+        self.searchBarView.addDropShadow()
+    }
+
+    private func setupActions() {
+        viewModel.beers.sink { [weak self] beers in
+            self?.listView.show(beers)
+        }.store(in: &cancellables)
     }
 }

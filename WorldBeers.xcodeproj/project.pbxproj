@@ -16,6 +16,8 @@
 		1CB7D2B6285B97F1006AB7C2 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7D2B5285B97F1006AB7C2 /* NetworkRequest.swift */; };
 		1CB7D2B9285B9B33006AB7C2 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7D2B8285B9B33006AB7C2 /* SearchBarView.swift */; };
 		1CB7D2BC285BC60B006AB7C2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1CB7D2BB285BC60B006AB7C2 /* Kingfisher */; };
+		1CB7D2BF285BF0B1006AB7C2 /* CellIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7D2BE285BF0B1006AB7C2 /* CellIdentifiable.swift */; };
+		1CB7D2C1285BF62B006AB7C2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7D2C0285BF62B006AB7C2 /* UIView+Extension.swift */; };
 		1CC846BB285A8E9C0059484C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC846BA285A8E9C0059484C /* AppDelegate.swift */; };
 		1CC846BD285A8E9C0059484C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC846BC285A8E9C0059484C /* SceneDelegate.swift */; };
 		1CC846C4285A8E9D0059484C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC846C3285A8E9D0059484C /* Assets.xcassets */; };
@@ -55,6 +57,8 @@
 		1CB7D2B3285B7772006AB7C2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1CB7D2B5285B97F1006AB7C2 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		1CB7D2B8285B9B33006AB7C2 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		1CB7D2BE285BF0B1006AB7C2 /* CellIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIdentifiable.swift; sourceTree = "<group>"; };
+		1CB7D2C0285BF62B006AB7C2 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1CC846B7285A8E9C0059484C /* WorldBeers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldBeers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CC846BA285A8E9C0059484C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CC846BC285A8E9C0059484C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +136,15 @@
 			path = SearchBar;
 			sourceTree = "<group>";
 		};
+		1CB7D2BD285BF09C006AB7C2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1CB7D2BE285BF0B1006AB7C2 /* CellIdentifiable.swift */,
+				1CB7D2C0285BF62B006AB7C2 /* UIView+Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		1CC846AE285A8E9C0059484C = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +168,7 @@
 		1CC846B9285A8E9C0059484C /* WorldBeers */ = {
 			isa = PBXGroup;
 			children = (
+				1CB7D2BD285BF09C006AB7C2 /* Utils */,
 				1CB7D2AE285B74D8006AB7C2 /* Splash */,
 				1CB7D2AB285B73BF006AB7C2 /* Network */,
 				1CB7D2A8285B72AB006AB7C2 /* Models */,
@@ -355,11 +369,13 @@
 				1CC846F1285A925A0059484C /* BeerListView.swift in Sources */,
 				1CC846BB285A8E9C0059484C /* AppDelegate.swift in Sources */,
 				1CB7D2AD285B73D1006AB7C2 /* NetworkWorker.swift in Sources */,
+				1CB7D2C1285BF62B006AB7C2 /* UIView+Extension.swift in Sources */,
 				1CB7D2B4285B7772006AB7C2 /* Images.swift in Sources */,
 				1CB7D2B0285B74F0006AB7C2 /* SplashViewController.swift in Sources */,
 				1CC846BD285A8E9C0059484C /* SceneDelegate.swift in Sources */,
 				1CB7D2B2285B7645006AB7C2 /* SplashViewModel.swift in Sources */,
 				1CC846EE285A92330059484C /* HomeViewModel.swift in Sources */,
+				1CB7D2BF285BF0B1006AB7C2 /* CellIdentifiable.swift in Sources */,
 				1CB7D2A7285B728F006AB7C2 /* BeerRow.swift in Sources */,
 				1CB7D2B9285B9B33006AB7C2 /* SearchBarView.swift in Sources */,
 				1CB7D2AA285B72B1006AB7C2 /* Beer.swift in Sources */,

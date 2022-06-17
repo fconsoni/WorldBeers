@@ -16,8 +16,8 @@ final class SearchBarView: UIView {
         textfield.clearButtonMode = .whileEditing
         textfield.textColor = .white
         textfield.borderStyle = .roundedRect
-        textfield.backgroundColor = .lightGray
-        textfield.attributedPlaceholder = NSAttributedString(string: "Search for name or description", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
+        textfield.backgroundColor = .white
+        textfield.attributedPlaceholder = NSAttributedString(string: "Search for name or description", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         return textfield
     }()
 
@@ -26,6 +26,8 @@ final class SearchBarView: UIView {
 
     init() {
         super.init(frame: .zero)
+
+        self.backgroundColor = .lightGray
 
         setupView()
         setupACtions()
@@ -36,22 +38,13 @@ final class SearchBarView: UIView {
     }
 
     private func setupView() {
-        let separator = UIView()
-        separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.backgroundColor = .black.withAlphaComponent(0.3)
-
-        [searchTextBar, separator].forEach(self.addSubview)
+        [searchTextBar].forEach(self.addSubview)
 
         NSLayoutConstraint.activate([
             searchTextBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 32),
             searchTextBar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
             searchTextBar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
-
-            separator.topAnchor.constraint(equalTo: searchTextBar.bottomAnchor, constant: 16),
-            separator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            separator.widthAnchor.constraint(equalTo: self.widthAnchor),
-            separator.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            separator.heightAnchor.constraint(equalToConstant: 1)
+            searchTextBar.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
         ])
     }
 

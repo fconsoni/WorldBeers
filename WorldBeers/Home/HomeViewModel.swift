@@ -9,8 +9,10 @@ import Foundation
 import Combine
 
 final class HomeViewModel {
-    
+    private(set) var beerSelected = PassthroughSubject<Beer, Never>()
+    private(set) var beers = CurrentValueSubject<[Beer], Never>([])
+
     init(beers: [Beer]) {
-        print(beers.map(\.name))
+        self.beers.send(beers)
     }
 }
