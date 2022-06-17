@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Beer: Codable {
+struct Beer: Codable, Hashable {
     let name: String
     let imageUrl: String
     let description: String

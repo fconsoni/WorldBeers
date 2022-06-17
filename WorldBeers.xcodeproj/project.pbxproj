@@ -145,6 +145,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		1CB7D2C2285C3ACD006AB7C2 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				1CC846EA285A8EEA0059484C /* Home */,
+				1CB7D2AE285B74D8006AB7C2 /* Splash */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		1CC846AE285A8E9C0059484C = {
 			isa = PBXGroup;
 			children = (
@@ -168,12 +177,11 @@
 		1CC846B9285A8E9C0059484C /* WorldBeers */ = {
 			isa = PBXGroup;
 			children = (
+				1CB7D2C2285C3ACD006AB7C2 /* Screens */,
 				1CB7D2BD285BF09C006AB7C2 /* Utils */,
-				1CB7D2AE285B74D8006AB7C2 /* Splash */,
 				1CB7D2AB285B73BF006AB7C2 /* Network */,
 				1CB7D2A8285B72AB006AB7C2 /* Models */,
 				1CC846F2285A92D80059484C /* Resources */,
-				1CC846EA285A8EEA0059484C /* Home */,
 				1CC846BA285A8E9C0059484C /* AppDelegate.swift */,
 				1CC846BC285A8E9C0059484C /* SceneDelegate.swift */,
 				1CC846C3285A8E9D0059484C /* Assets.xcassets */,
