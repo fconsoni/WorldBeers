@@ -26,10 +26,24 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = .white
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
 
+        configureNavBar()
         setupView()
         setupActions()
+    }
+
+    private func configureNavBar() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.tintColor = .black
+
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .lightGray
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -39,7 +53,6 @@ final class DetailViewController: UIViewController {
     }
 
     private func setupView() {
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 //        [listView, searchBarView].forEach(self.view.addSubview)
 //
 //        NSLayoutConstraint.activate([
