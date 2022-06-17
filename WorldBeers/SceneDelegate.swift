@@ -45,7 +45,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func showDetailScreen(of beer: Beer) {
-        print(beer)
+        let viewModel = DetailViewModel(details: beer.details)
+
+        self.navController?.pushViewController(DetailViewController(viewModel: viewModel), animated: true)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

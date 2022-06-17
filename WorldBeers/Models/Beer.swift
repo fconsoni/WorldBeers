@@ -14,6 +14,17 @@ struct Beer: Codable, Hashable {
     let description: String
     let abv: Double
     let ibu: Double?
+
+    let firstBrewed: String
+    let foodPairing: [String]
+    let brewerTips: String
+
+    var details: BeerDetails {
+        BeerDetails(name: name,
+                    firstBrewed: firstBrewed,
+                    foodPairing: foodPairing,
+                    brewerTips: brewerTips)
+    }
 }
 
 extension Beer {
@@ -22,6 +33,16 @@ extension Beer {
              imageUrl = "image_url",
              description,
              abv,
-             ibu
+             ibu,
+             firstBrewed = "first_brewed",
+             foodPairing = "food_pairing",
+             brewerTips = "brewers_tips"
     }
+}
+
+struct BeerDetails {
+    let name: String
+    let firstBrewed: String
+    let foodPairing: [String]
+    let brewerTips: String
 }

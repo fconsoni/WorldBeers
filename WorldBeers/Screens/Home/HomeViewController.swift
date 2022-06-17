@@ -41,11 +41,6 @@ final class HomeViewController: UIViewController {
         self.view.backgroundColor = .white
 
         setupView()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
         setupActions()
     }
 
