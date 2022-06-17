@@ -21,6 +21,12 @@ final class DetailViewController: UIViewController {
         return view
     }()
 
+    private let foodPairingView: FoodPairingView = {
+        let view = FoodPairingView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private var cancellables = Set<AnyCancellable>()
     private let viewModel: DetailViewModel
 
@@ -65,16 +71,21 @@ final class DetailViewController: UIViewController {
     }
 
     private func setupView() {
-        [firstBrewedView, brewerTipsView].forEach(self.view.addSubview)
+        [firstBrewedView, brewerTipsView, foodPairingView].forEach(self.view.addSubview)
 
         NSLayoutConstraint.activate([
-            firstBrewedView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
+            firstBrewedView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 36),
             firstBrewedView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             firstBrewedView.widthAnchor.constraint(equalTo: view.widthAnchor),
 
-            brewerTipsView.topAnchor.constraint(equalTo: firstBrewedView.bottomAnchor, constant: 24),
+            brewerTipsView.topAnchor.constraint(equalTo: firstBrewedView.bottomAnchor, constant: 36),
             brewerTipsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            brewerTipsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
+            brewerTipsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+
+            foodPairingView.topAnchor.constraint(equalTo: brewerTipsView.bottomAnchor, constant: 36),
+            foodPairingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            foodPairingView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
+            foodPairingView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -36)
         ])
     }
 
@@ -86,6 +97,7 @@ final class DetailViewController: UIViewController {
         viewModel.$details.sink { [weak self] details in
             self?.firstBrewedView.show(.firstBrewed, of: details)
             self?.brewerTipsView.show(.brewerTips, of: details)
+            self?.foodPairingView.show(details.foodPairing)
         }.store(in: &cancellables)
     }
 }
