@@ -12,7 +12,6 @@ import Combine
 final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     private let collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-//        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         flowLayout.minimumInteritemSpacing = 16
         flowLayout.minimumLineSpacing = 16
 
@@ -22,6 +21,7 @@ final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDe
         collectionView.register(BeerRow.self)
         collectionView.backgroundColor = .white
         collectionView.contentInsetAdjustmentBehavior = .always
+        collectionView.keyboardDismissMode = .onDrag
         return collectionView
     }()
 

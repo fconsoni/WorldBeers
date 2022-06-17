@@ -14,14 +14,14 @@ final class SearchBarView: UIView {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.clearButtonMode = .whileEditing
-        textfield.textColor = .white
+        textfield.textColor = .black
         textfield.borderStyle = .roundedRect
         textfield.backgroundColor = .white
         textfield.attributedPlaceholder = NSAttributedString(string: "Search for name or description", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.withAlphaComponent(0.8)])
         return textfield
     }()
 
-    private(set) var textchanged = PassthroughSubject<String?, Never>()
+    private(set) var textchanged = PassthroughSubject<String, Never>()
     private var cancellables = Set<AnyCancellable>()
 
     init() {
@@ -59,7 +59,7 @@ private extension UITextField {
     func textPublisher() -> AnyPublisher<String, Never> {
         NotificationCenter.default
             .publisher(for: UITextField.textDidChangeNotification, object: self)
-            .map { ($0.object as? UITextField)?.text  ?? "" }
+            .map { ($0.object as? UITextField)?.text ?? "" }
             .eraseToAnyPublisher()
     }
 }

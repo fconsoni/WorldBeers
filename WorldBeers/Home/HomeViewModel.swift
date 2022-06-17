@@ -15,4 +15,8 @@ final class HomeViewModel {
     init(beers: [Beer]) {
         self.beers.send(beers)
     }
+
+    func search(_ text: String) {
+        print(text)
+    }
 }
