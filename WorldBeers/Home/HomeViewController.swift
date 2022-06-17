@@ -78,9 +78,13 @@ final class HomeViewController: UIViewController {
         }.store(in: &cancellables)
 
         searchBarView.textchanged
-            .debounce(for: 0.75, scheduler: RunLoop.main)
+            .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink { [weak self] text in
                 self?.viewModel.search(text)
             }.store(in: &cancellables)
+
+        listView.selectedBeer.sink { [weak self] beer in
+            self?.viewModel.pick(beer)
+        }.store(in: &cancellables)
     }
 }

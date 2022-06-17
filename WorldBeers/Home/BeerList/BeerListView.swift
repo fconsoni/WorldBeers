@@ -55,9 +55,9 @@ final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDe
     func show(_ beers: [Beer]) {
         self.beers = beers
 
-//        UIView.performWithoutAnimation {
+        UIView.performWithoutAnimation {
             self.collectionView.reloadData()
-//        }
+        }
     }
 
     func setTopInset(_ inset: CGFloat) {
@@ -75,6 +75,10 @@ final class BeerListView: UIView, UICollectionViewDataSource, UICollectionViewDe
         cell?.show(beers[indexPath.row])
 
         return cell!
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedBeer.send(beers[indexPath.row])
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

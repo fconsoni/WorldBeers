@@ -35,9 +35,17 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func showHomeViewController(with beers: [Beer]) {
-        let vc = HomeViewController(viewModel: HomeViewModel(beers: beers))
+        let viewModel = HomeViewModel(beers: beers)
 
-        self.navController?.pushViewController(vc, animated: false)
+        viewModel.beerSelected.sink { [weak self] beer in
+            self?.showDetailScreen(of: beer)
+        }.store(in: &cancellables)
+
+        self.navController?.pushViewController(HomeViewController(viewModel: viewModel), animated: false)
+    }
+
+    private func showDetailScreen(of beer: Beer) {
+        print(beer)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

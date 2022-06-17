@@ -19,4 +19,8 @@ final class HomeViewModel {
     func search(_ text: String) {
         print(text)
     }
+
+    func pick(_ beer: Beer) {
+        self.beerSelected.send(beer)
+    }
 }
