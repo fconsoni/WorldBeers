@@ -10,11 +10,10 @@ import Combine
 
 final class DetailViewModel {
     private(set) var screenTitle = CurrentValueSubject<String, Never>("")
-    private let details: BeerDetails
+    @Published private(set) var details: BeerDetails
 
     init(details: BeerDetails) {
-        self.details = details
-
         self.screenTitle.send(details.name)
+        self.details = details
     }
 }

@@ -9,6 +9,18 @@ import UIKit
 import Combine
 
 final class DetailViewController: UIViewController {
+    private let firstBrewedView: SimpleTextDetailView = {
+        let firstBrewedView = SimpleTextDetailView()
+        firstBrewedView.translatesAutoresizingMaskIntoConstraints = false
+        return firstBrewedView
+    }()
+
+    private let brewerTipsView: SimpleTextDetailView = {
+        let view = SimpleTextDetailView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private var cancellables = Set<AnyCancellable>()
     private let viewModel: DetailViewModel
 
@@ -53,38 +65,27 @@ final class DetailViewController: UIViewController {
     }
 
     private func setupView() {
-//        [listView, searchBarView].forEach(self.view.addSubview)
-//
-//        NSLayoutConstraint.activate([
-//            searchBarView.topAnchor.constraint(equalTo: view.topAnchor),
-//            searchBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            searchBarView.widthAnchor.constraint(equalTo: view.widthAnchor),
-//
-//            listView.topAnchor.constraint(equalTo: view.topAnchor),
-//            listView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            listView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            listView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//        ])
-//
-//        self.searchBarView.addDropShadow()
+        [firstBrewedView, brewerTipsView].forEach(self.view.addSubview)
+
+        NSLayoutConstraint.activate([
+            firstBrewedView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
+            firstBrewedView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            firstBrewedView.widthAnchor.constraint(equalTo: view.widthAnchor),
+
+            brewerTipsView.topAnchor.constraint(equalTo: firstBrewedView.bottomAnchor, constant: 24),
+            brewerTipsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            brewerTipsView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
+        ])
     }
 
     private func setupActions() {
         viewModel.screenTitle.sink { [weak self] title in
             self?.navigationItem.title = title
         }.store(in: &cancellables)
-//        viewModel.beers.sink { [weak self] beers in
-//            self?.listView.show(beers)
-//        }.store(in: &cancellables)
-//
-//        searchBarView.textchanged
-//            .debounce(for: 0.5, scheduler: RunLoop.main)
-//            .sink { [weak self] text in
-//                self?.viewModel.search(text)
-//            }.store(in: &cancellables)
-//
-//        listView.selectedBeer.sink { [weak self] beer in
-//            self?.viewModel.pick(beer)
-//        }.store(in: &cancellables)
+
+        viewModel.$details.sink { [weak self] details in
+            self?.firstBrewedView.show(.firstBrewed, of: details)
+            self?.brewerTipsView.show(.brewerTips, of: details)
+        }.store(in: &cancellables)
     }
 }
